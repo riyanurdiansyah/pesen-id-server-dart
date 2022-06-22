@@ -1,11 +1,22 @@
-A Server app built using Dart
+## A SERVER APP BUILD USING DART
+#### REQUEST - `/signin`
+- Header
+```
+{
+    "Application": "application/json",
+    "Content-Type": "application/json"
+}
+```
 
-# Running the sample
+- Body
+```
+{
+    "email": "riyans.arkademi@gmail.com",
+    "password": "riyan@123"
+}
+```
 
-## AUTH
-#### LOGIN
-
-- #### Response
+#### RESPONSE
 
 ```
 {
@@ -41,35 +52,60 @@ A Server app built using Dart
 }
 ```
 
-And then from a second terminal:
+#### REQUEST - `/signup`
+- Header
 ```
-$ curl http://0.0.0.0:8080
-Hello, World!
-$ curl http://0.0.0.0:8080/echo/I_love_Dart
-I_love_Dart
-```
-
-## Running with Docker
-
-If you have [Docker Desktop](https://www.docker.com/get-started) installed, you
-can build and run with the `docker` command:
-
-```
-$ docker build . -t myserver
-$ docker run -it -p 8080:8080 myserver
-Server listening on port 8080
+{
+    "name" : "User Testing",
+    "email": "usertestin1234g@gmail.com",
+    "username" : "usertesting1234",
+    "password": "usertesting@123",
+    "handphone" : "0812818281",
+    "role" : 1
+}
 ```
 
-And then from a second terminal:
+- Body
 ```
-$ curl http://0.0.0.0:8080
-Hello, World!
-$ curl http://0.0.0.0:8080/echo/I_love_Dart
-I_love_Dart
+{
+    "email": "riyans.arkademi@gmail.com",
+    "password": "riyan@123"
+}
 ```
 
-You should see the logging printed in the first terminal:
+#### RESPONSE
+
 ```
-2021-05-06T15:47:04.620417  0:00:00.000158 GET     [200] /
-2021-05-06T15:47:08.392928  0:00:00.001216 GET     [200] /echo/I_love_Dart
+{
+    "status": 200,
+    "message": "Success",
+    "data": {
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU1ODY0OTc4LCJzdWIiOiIyMWQ0NmJlNi1hMmJhLTRkNTItOWI3Yi0yOWEyZWI0NTYxYTgiLCJlbWFpbCI6InVzZXJ0ZXN0aW4xMjM0Z0BnbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQifQ.r-FbL6KG0vVRNNmH-5qJ4n020U2gwpFnkcbmLKub2PM",
+        "expires_in": 3600,
+        "refresh_token": "MA7Y9mOl1jpPVkQaQGwRrg",
+        "token_type": "bearer",
+        "provider_token": null,
+        "user": {
+            "id": "21d46be6-a2ba-4d52-9b7b-29a2eb4561a8",
+            "app_metadata": {
+                "provider": "email",
+                "providers": [
+                    "email"
+                ]
+            },
+            "user_metadata": {},
+            "aud": "authenticated",
+            "email": "usertestin1234g@gmail.com",
+            "phone": "",
+            "created_at": "2022-06-22T01:29:38.60888Z",
+            "confirmed_at": null,
+            "email_confirmed_at": "2022-06-22T01:29:38.613237367Z",
+            "phone_confirmed_at": null,
+            "last_sign_in_at": "2022-06-22T01:29:38.616562163Z",
+            "role": "authenticated",
+            "updated_at": "2022-06-22T01:29:38.61763Z"
+        }
+    }
+}
 ```
+
