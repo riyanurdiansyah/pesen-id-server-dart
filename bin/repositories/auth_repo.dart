@@ -8,6 +8,8 @@ abstract class AuthRepo {
 
   Future<PostgrestResponse<dynamic>?> getUsers();
 
+  Future<PostgrestResponse<dynamic>?> getUserById(String id);
+
   Future<PostgrestResponse<dynamic>?> addUser(UserM user);
 
   Future<GotrueSessionResponse?> signin(String email, String password);

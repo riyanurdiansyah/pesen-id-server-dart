@@ -1,18 +1,44 @@
-A server app built using [Shelf](https://pub.dev/packages/shelf),
-configured to enable running with [Docker](https://www.docker.com/).
-
-This sample code handles HTTP GET requests to `/` and `/echo/<message>`
+A Server app built using Dart
 
 # Running the sample
 
-## Running with the Dart SDK
+## AUTH
+#### LOGIN
 
-You can run the example with the [Dart SDK](https://dart.dev/get-dart)
-like this:
+- #### Response
 
 ```
-$ dart run bin/server.dart
-Server listening on port 8080
+{
+    "status": 200,
+    "message": "Success",
+    "data": {
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjU1ODY0OTY2LCJzdWIiOiI3M2ZkMTc4Yi0yOWE5LTQ2OWQtYTlhZS0xZmZjNjVjZGIyYmYiLCJlbWFpbCI6InJpeWFucy5hcmthZGVtaUBnbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQifQ.wphUieNE6MdzywUDtwCcHypWrNQCDCi6529BhCb1ydU",
+        "expires_in": 3600,
+        "refresh_token": "cF7NkOs-nJv2KeJjkRabgQ",
+        "token_type": "bearer",
+        "provider_token": null,
+        "user": {
+            "id": "73fd178b-29a9-469d-a9ae-1ffc65cdb2bf",
+            "app_metadata": {
+                "provider": "email",
+                "providers": [
+                    "email"
+                ]
+            },
+            "user_metadata": {},
+            "aud": "authenticated",
+            "email": "riyans.arkademi@gmail.com",
+            "phone": "",
+            "created_at": "2022-06-21T14:28:54.327786Z",
+            "confirmed_at": "2022-06-21T14:28:54.332112Z",
+            "email_confirmed_at": "2022-06-21T14:28:54.332112Z",
+            "phone_confirmed_at": null,
+            "last_sign_in_at": "2022-06-22T01:29:26.847130846Z",
+            "role": "authenticated",
+            "updated_at": "2022-06-22T01:29:26.848466Z"
+        }
+    }
+}
 ```
 
 And then from a second terminal:

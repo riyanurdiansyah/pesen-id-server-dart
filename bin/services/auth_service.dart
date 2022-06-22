@@ -8,7 +8,17 @@ class AuthService extends AuthRepo {
   @override
   Future<PostgrestResponse<dynamic>?> getUsers() async {
     try {
-      return await db.from('tb_users').select('*').execute();
+      return await db.from('users').select('*').eq('id', 1).execute();
+    } catch (e) {
+      print("ERROR : ${e.toString()}");
+      return null;
+    }
+  }
+
+  @override
+  Future<PostgrestResponse<dynamic>?> getUserById(String id) async {
+    try {
+      return await db.from('users').select('*').eq('id', id).execute();
     } catch (e) {
       print("ERROR : ${e.toString()}");
       return null;
@@ -18,9 +28,7 @@ class AuthService extends AuthRepo {
   @override
   Future<GotrueSessionResponse?> signin(String email, String password) async {
     try {
-      final res = await db.auth.signIn(email: email, password: password);
-      print("CEK : $res");
-      return res;
+      return await db.auth.signIn(email: email, password: password);
     } catch (e) {
       print("ERROR : ${e.toString()}");
       return null;
@@ -40,11 +48,9 @@ class AuthService extends AuthRepo {
   @override
   Future<PostgrestResponse?> addUser(UserM user) async {
     try {
-      final res = await db.from('tb_users').insert([
+      return await db.from('users').insert([
         user.toJson(),
       ]).execute();
-      print("RES ADD : ${res.data}");
-      return res;
     } catch (e) {
       print("ERROR : ${e.toString()}");
       return null;
