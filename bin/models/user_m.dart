@@ -18,6 +18,7 @@ class UserM {
     this.updatedAt,
     this.password,
     this.image,
+    this.address,
   });
 
   int? id;
@@ -30,6 +31,7 @@ class UserM {
   DateTime? createdAt;
   DateTime? updatedAt;
   String? image;
+  String? address;
 
   factory UserM.fromJson(Map<String, dynamic> json) => UserM(
         id: json["id"],
@@ -38,9 +40,10 @@ class UserM {
         email: json["email"],
         role: json["role"],
         handphone: json["handphone"],
+        image: json["image"] ?? '',
+        address: json["address"] ?? '',
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        image: json["image"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,9 +52,10 @@ class UserM {
         "name": name,
         "email": email,
         "handphone": handphone,
-        "created_at": createdAt!.toIso8601String(),
-        "updated_at": updatedAt!.toIso8601String(),
         "role": role,
         "image": image,
+        "address": address,
+        "created_at": createdAt!.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
       };
 }

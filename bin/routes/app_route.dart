@@ -1,12 +1,17 @@
+import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 import '../controllers/auth_c.dart';
+import '../controllers/user_c.dart';
 import '../utils/app_constanta.dart';
 import 'app_route_auth.dart';
 
 class AppRoute {
-  final routes = Router()
-    ..post('$baseUrl/signup', AuthController.fnPostSignup)
-    ..post('$baseUrl/signin', AuthController.fnPostSignin)
-    ..get('$baseUrl/users', AppRouteAuth().router)
-    ..get('$baseUrl/users/<id>', AppRouteAuth().router);
+  Handler get routes {
+    final app = Router();
+    app.post('$baseUrl/signup', AuthController.fnPostSignup);
+    app.post('$baseUrl/signin', AuthController.fnPostSignin);
+    app.get('$baseUrl/categories', UserController.fnCategories);
+    app.mount('$baseUrl/users', AppRouteAuth().router);
+    return app;
+  }
 }

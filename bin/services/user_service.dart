@@ -33,4 +33,14 @@ class UserService extends UserRepo {
       return null;
     }
   }
+
+  @override
+  Future<PostgrestResponse?> getCategories() async {
+    try {
+      return await db.from('tb_categories').select('*').execute();
+    } catch (e) {
+      print("ERROR : ${e.toString()}");
+      return null;
+    }
+  }
 }

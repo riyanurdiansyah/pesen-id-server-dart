@@ -2,22 +2,42 @@ import 'dart:convert';
 
 import 'package:shelf/shelf.dart';
 import 'package:supabase/supabase.dart';
+import '../models/categori_m.dart';
 import '../models/response_m.dart';
 import '../models/user_m.dart';
 import '../services/user_service.dart';
 import '../utils/app_response.dart';
 
 class UserController {
-  static fnGetUser(Request request) async {
-    final response = await UserService().getUsers();
+  static fnCategories(Request request) async {
+    final response = await UserService().getCategories();
     if (response!.data != null) {
+      final categories = <CategoriM>[];
+      for (var data in response.data) {
+        categories.add(CategoriM.fromJson(data));
+      }
       return AppResponse.response(
           response.status!,
           jsonEncode(
-              ResponseM(status: 200, message: 'Success', data: response.data)));
+              ResponseM(status: 200, message: 'Success', data: categories)));
     } else {
-      return AppResponse.response(
-          response.status!, jsonEncode({'message': response.error!.message}));
+      return AppResponse.response(response.status!,
+          jsonEncode({'message': response.error!.message, 'data': []}));
+    }
+  }
+
+  static fnGetUsers(Request request) async {
+    final response = await UserService().getUsers();
+    if (response!.data != null) {
+      final users = <UserM>[];
+      for (var data in response.data) {
+        users.add(UserM.fromJson(data));
+      }
+      return AppResponse.response(response.status!,
+          jsonEncode(ResponseM(status: 200, message: 'Success', data: users)));
+    } else {
+      return AppResponse.response(response.status!,
+          jsonEncode(ResponseM(status: 200, message: 'Success', data: [])));
     }
   }
 
@@ -30,8 +50,8 @@ class UserController {
           jsonEncode(
               ResponseM(status: 200, message: 'Success', data: user.toJson())));
     } else {
-      return AppResponse.response(
-          response.status!, jsonEncode({'message': response.error!.message}));
+      return AppResponse.response(response.status!,
+          jsonEncode(ResponseM(status: 200, message: 'Success', data: {})));
     }
   }
 
