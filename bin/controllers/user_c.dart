@@ -21,8 +21,12 @@ class UserController {
           jsonEncode(
               ResponseM(status: 200, message: 'Success', data: categories)));
     } else {
-      return AppResponse.response(response.status!,
-          jsonEncode({'message': response.error!.message, 'data': []}));
+      return AppResponse.response(
+          response.status!,
+          jsonEncode(ResponseM(
+              status: response.status!,
+              message: response.error!.message,
+              data: [])));
     }
   }
 
@@ -36,8 +40,12 @@ class UserController {
       return AppResponse.response(response.status!,
           jsonEncode(ResponseM(status: 200, message: 'Success', data: users)));
     } else {
-      return AppResponse.response(response.status!,
-          jsonEncode(ResponseM(status: 200, message: 'Success', data: [])));
+      return AppResponse.response(
+          response.status!,
+          jsonEncode(ResponseM(
+              status: response.status!,
+              message: response.error!.message,
+              data: [])));
     }
   }
 
@@ -50,8 +58,12 @@ class UserController {
           jsonEncode(
               ResponseM(status: 200, message: 'Success', data: user.toJson())));
     } else {
-      return AppResponse.response(response.status!,
-          jsonEncode(ResponseM(status: 200, message: 'Success', data: {})));
+      return AppResponse.response(
+          response.status!,
+          jsonEncode(ResponseM(
+              status: response.status!,
+              message: response.error!.message,
+              data: {})));
     }
   }
 

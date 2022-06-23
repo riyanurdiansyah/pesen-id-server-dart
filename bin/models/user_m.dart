@@ -55,7 +55,28 @@ class UserM {
         "role": role,
         "image": image,
         "address": address,
-        "created_at": createdAt!.toIso8601String(),
-        "updated_at": updatedAt!.toIso8601String(),
+        "created_at": createdAt?.toIso8601String() ?? DateTime.now(),
+        "updated_at": updatedAt?.toIso8601String() ?? DateTime.now(),
+      };
+
+  factory UserM.fromJsonSignup(Map<String, dynamic> json) => UserM(
+        name: json["name"],
+        email: json["email"],
+        username: json["username"],
+        password: json["password"],
+        handphone: json["handphone"],
+        image: json["image"] ?? '',
+        address: json["address"] ?? '',
+        role: json["role"],
+      );
+
+  Map<String, dynamic> toJsonSignup() => {
+        "username": username,
+        "name": name,
+        "email": email,
+        "handphone": handphone,
+        "role": role,
+        "image": image,
+        "address": address,
       };
 }

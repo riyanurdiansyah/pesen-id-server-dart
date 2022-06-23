@@ -27,7 +27,7 @@ class UserService extends UserRepo {
   @override
   Future<PostgrestResponse?> addUser(UserM user) async {
     try {
-      return await db.from('tb_users').insert([user.toJson()]).execute();
+      return await db.from('tb_users').insert([user.toJsonSignup()]).execute();
     } catch (e) {
       print("ERROR : ${e.toString()}");
       return null;
