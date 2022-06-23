@@ -28,7 +28,8 @@ class AuthController {
   }
 
   static fnPostSignup(Request request) async {
-    final user = UserM.fromJson(json.decode(await request.readAsString()));
+    final user =
+        UserM.fromJsonSignup(json.decode(await request.readAsString()));
     final response = await AuthService().signup(user.email!, user.password!);
     final responseAdd = await UserService().addUser(user);
     if (response != null && responseAdd != null) {
