@@ -11,6 +11,7 @@ class AppRoute {
     final app = Router();
     app.post('$baseUrl/signup', AuthController.fnPostSignup);
     app.post('$baseUrl/signin', AuthController.fnPostSignin);
+    app.post('$baseUrl/upload/<id>', AuthController.fnUploadImage);
     app.get('$baseUrl/categories', UserController.fnCategories);
     app.mount('$baseUrl/users', AppRouteUser().router);
     app.mount('$baseUrl/fields', AppRouteField().router);

@@ -17,6 +17,6 @@ void main(List<String> args) async {
 
   // For running in containers, we respect the PORT environment variable.
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
-  final server = await serve(handler, 'localhost', port);
-  print('SERVER START ON PORT ${server.port}');
+  final server = await serve(handler, ip, port);
+  print('SERVER START ${ip.address} ON PORT ${server.port}');
 }

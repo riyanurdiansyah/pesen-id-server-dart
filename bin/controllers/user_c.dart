@@ -51,12 +51,22 @@ class UserController {
 
   static fnGetUserById(Request request, String id) async {
     final response = await UserService().getUserById(id);
-    if (response!.data != null) {
-      final user = UserM.fromJson(response.data[0]);
-      return AppResponse.response(
-          response.status!,
-          jsonEncode(
-              ResponseM(status: 200, message: 'Success', data: user.toJson())));
+    print("LIST : ${response!.data}");
+    if (response.data != null) {
+      if (response.data.isNotEmpty) {
+        final user = UserM.fromJson(response.data[0]);
+        return AppResponse.response(
+            response.status!,
+            jsonEncode(ResponseM(
+                status: 200, message: 'Success', data: user.toJson())));
+      } else {
+        return AppResponse.response(
+            response.status!,
+            jsonEncode(ResponseM(
+                status: response.status!,
+                message: 'User is not found',
+                data: {})));
+      }
     } else {
       return AppResponse.response(
           response.status!,
